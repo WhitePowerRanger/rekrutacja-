@@ -14,13 +14,13 @@ def make_convert():
         results_folder = list(file.get('results'))
         np.set_printoptions(precision=20)
         os.chdir('DataBase')
-        for i, k in enumerate(results_folder):
+        for i, folder_name in enumerate(results_folder):
 
-            os.mkdir(k)
-            os.chdir(k)
-            nodes = np.array(file.get('results').get(k).get('nodes'))
-            gens = np.array(file.get('results').get(k).get('gens'))
-            branches = np.array(file.get('results').get(k).get('branches'))
+            os.mkdir(folder_name)
+            os.chdir(folder_name)
+            nodes = np.array(file.get('results').get(folder_name).get('nodes'))
+            gens = np.array(file.get('results').get(folder_name).get('gens'))
+            branches = np.array(file.get('results').get(folder_name).get('branches'))
 
             con = sqlite3.connect('data.db')
             cur = con.cursor()
@@ -62,9 +62,9 @@ def make_convert():
 
 # Pobieranie danych wybranej godziny z SQLite
 def get_branches_data(request, hours):
-    for i, k in enumerate(hours):
-        if 'hour_' + request == k:
-            os.chdir(k)
+    for i, folder_name in enumerate(hours):
+        if 'hour_' + request == folder_name:
+            os.chdir(folder_name)
             con = sqlite3.connect('data.db')
             cur = con.cursor()
 
