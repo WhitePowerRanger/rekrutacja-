@@ -90,13 +90,9 @@ def create_graph(data_branches):
     plt.show()
 
 
-def test(data_branches):
-    if not data_branches:
-        print('Something went wrong, try again =(((')
-        quit()
+
 
 
 folders = make_convert()
 data = get_branches_data(input('Enter an hour You want to check:'), folders)
-test(data)
 create_graph(data)
